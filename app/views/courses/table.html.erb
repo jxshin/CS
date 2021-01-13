@@ -16,6 +16,7 @@
           <thead>
             <tr>
               <th></th>
+              <th></th>
               <% days.each do |day| %>
                 <th> <%= day %> </th>
               <% end %>
@@ -24,6 +25,13 @@
           <tbody>
             <% times.each do |time| %>
               <tr> 
+               <% if time=="1-2" %>
+                <td class="combined-table-cell" rowspan="2" > 上午 </td>
+               <% else %>
+                 <% if time=="5-6(5-7)" %>
+                 <td class="combined-table-cell" rowspan="3" > 下午 </td>
+                 <% end %>
+               <% end %>
                <td><%= time %>节</td>
                <% days.each do |day| %>
                  <td>

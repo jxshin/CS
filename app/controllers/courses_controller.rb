@@ -78,6 +78,9 @@ class CoursesController < ApplicationController
         conditions += " and name like '%#{cname}%'"
       end
       @courses = Course.where(conditions, excluded_courses_id).paginate(page: params[:page], per_page: 4)
+    end
+  end  
+
 =begin
       if ctime != "不限" and ctype == "不限" and cname == ""
         @courses = Course.where("open = ? and course_time like ? and id not in (?)", true, "%#{ctime}%", excluded_courses_id).paginate(page: params[:page], per_page: 4)
@@ -95,9 +98,6 @@ class CoursesController < ApplicationController
         @courses = Course.where("open = ? and  course_time like ? and course_type = ? and name like ? and id not in (?)", true, "%#{ctime}%", ctype, "%#{cname}%", excluded_courses_id).paginate(page: params[:page], per_page: 4)
       end
 =end
-
-    end
-  end  
 
   def hint
     @courses = current_user.courses
